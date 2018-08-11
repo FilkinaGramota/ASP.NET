@@ -1,0 +1,11 @@
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\bin\Debug\netcoreapp2.0\WebAttempt.deps.json
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\bin\Debug\netcoreapp2.0\WebAttempt.runtimeconfig.json
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\bin\Debug\netcoreapp2.0\WebAttempt.runtimeconfig.dev.json
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\bin\Debug\netcoreapp2.0\WebAttempt.dll
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\bin\Debug\netcoreapp2.0\WebAttempt.pdb
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.csprojResolveAssemblyReference.cache
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.csproj.CoreCompileInputs.cache
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.AssemblyInfoInputs.cache
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.AssemblyInfo.cs
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.dll
+C:\Users\home\Documents\Visual Studio 2017\Projects\WebAttempt\WebAttempt\obj\Debug\netcoreapp2.0\WebAttempt.pdb

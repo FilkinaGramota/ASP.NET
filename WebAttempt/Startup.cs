@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,7 @@ namespace WebAttempt
             // на всякий пожарный (ну и раз Task => async/await)
             // public delegate Task RequestDelegate (HttpContext context)
             
-            app.Run(async (context) =>
+            async Task AboutContext (HttpContext context)
             {
                 string host = context.Request.Host.Value;
                 string path = context.Request.Path.Value;
@@ -35,9 +36,10 @@ namespace WebAttempt
                 string query = context.Request.QueryString.Value;
                 string method = context.Request.Method;
 
-                await context.Response.WriteAsync($"Host: {host}\nPath: {path}\nProtocol: {protocol}" +
-                                                  $"\nQuery: {query}\nMethod: {method}");
-            });
+                await context.Response.WriteAsync($"Host: {host}\nPath: {path}\nProtocol: {protocol}\nQuery: {query}\nMethod: {method}");
+            }
+
+            app.Run(AboutContext);
         }
     }
 }

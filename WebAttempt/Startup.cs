@@ -11,11 +11,10 @@ namespace WebAttempt
 {
     public class Startup
     {
-        private IHostingEnvironment environment;
-
-        public Startup(IHostingEnvironment env)
+        private string guestName;
+        public Startup()
         {
-            environment = env;
+            guestName = "Anonymous";
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -24,16 +23,16 @@ namespace WebAttempt
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hello World! {environment.ApplicationName}");
+                await context.Response.WriteAsync($"Hello World! {guestName}");
             });
         }
     }

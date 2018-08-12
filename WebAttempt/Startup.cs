@@ -11,11 +11,6 @@ namespace WebAttempt
 {
     public class Startup
     {
-        private string guestName;
-        public Startup()
-        {
-            guestName = "Anonymous";
-        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -29,10 +24,19 @@ namespace WebAttempt
             {
                 app.UseDeveloperExceptionPage();
             }
+            // на всякий пожарный (ну и раз Task => async/await)
+            // public delegate Task RequestDelegate (HttpContext context)
             
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hello World! {guestName}");
+                string host = context.Request.Host.Value;
+                string path = context.Request.Path.Value;
+                string protocol = context.Request.Protocol;
+                string query = context.Request.QueryString.Value;
+                string method = context.Request.Method;
+
+                await context.Response.WriteAsync($"Host: {host}\nPath: {path}\nProtocol: {protocol}" +
+                                                  $"\nQuery: {query}\nMethod: {method}");
             });
         }
     }

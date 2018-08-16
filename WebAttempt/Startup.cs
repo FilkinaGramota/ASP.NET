@@ -29,10 +29,17 @@ namespace WebAttempt
             // public delegate Task RequestDelegate (HttpContext context)
 
             app.Map("/index", Index);
+            app.MapWhen(context =>
+                {
+                    return (context.Request.Query.ContainsKey("id") && context.Request.Query["id"] == "1");
+                }, appBuilder =>
+                {
+                    appBuilder.Run(async (contextHttp) => await contextHttp.Response.WriteAsync("Ta-dam, id = 1."));
+                });
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello world!");
+                await context.Response.WriteAsync("Hello world, id != 1!");
             });
         }
 

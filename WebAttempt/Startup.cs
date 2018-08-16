@@ -27,19 +27,23 @@ namespace WebAttempt
             }
             // на всякий пожарный (ну и раз Task => async/await)
             // public delegate Task RequestDelegate (HttpContext context)
-            
-            async Task AboutContext (HttpContext context)
+            int x = 2;
+            int y = 3;
+            int z = 0;
+
+            app.Use(async (context, next) =>
             {
-                string host = context.Request.Host.Value;
-                string path = context.Request.Path.Value;
-                string protocol = context.Request.Protocol;
-                string query = context.Request.QueryString.Value;
-                string method = context.Request.Method;
-
-                await context.Response.WriteAsync($"Host: {host}\nPath: {path}\nProtocol: {protocol}\nQuery: {query}\nMethod: {method}");
-            }
-
-            app.Run(AboutContext);
+                z = x * y; // z = 6
+                await next(); // go to Run because it is next
+                // from Run
+                z = z + x + y; // z = 17
+                await context.Response.WriteAsync($"Hi, I am from Run and z = {z}");
+            });
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync($"Hi, I am from Use and z = {z}.\n");
+                z = z * 2;  // z = 12 and go back to Use
+            });
         }
     }
 }

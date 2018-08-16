@@ -27,23 +27,26 @@ namespace WebAttempt
             }
             // на всякий пожарный (ну и раз Task => async/await)
             // public delegate Task RequestDelegate (HttpContext context)
-            int x = 2;
-            int y = 3;
-            int z = 0;
 
-            app.Use(async (context, next) =>
-            {
-                z = x * y; // z = 6
-                await next(); // go to Run because it is next
-                // from Run
-                z = z + x + y; // z = 17
-                await context.Response.WriteAsync($"Hi, I am from Run and z = {z}");
-            });
+            app.Map("/index", Index);
+
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hi, I am from Use and z = {z}.\n");
-                z = z * 2;  // z = 12 and go back to Use
+                await context.Response.WriteAsync("Hello world!");
             });
+        }
+
+        private void Index(IApplicationBuilder app)
+        {
+            app.Use(async (contex, next) =>
+            {
+                await contex.Response.WriteAsync("I am in Index (first Use).\n");
+                await next();
+
+                await contex.Response.WriteAsync("I am in Index (first Use). Again.\n");
+            });
+
+            app.Use(async (context, next) => { await context.Response.WriteAsync("I am in Index (second Use).\n"); });
         }
     }
 }

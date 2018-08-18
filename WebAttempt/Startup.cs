@@ -37,6 +37,16 @@ namespace WebAttempt
                     appBuilder.Run(async (contextHttp) => await contextHttp.Response.WriteAsync("Ta-dam, id = 1."));
                 });
 
+            app.Map("/intro", (intro) =>
+            {
+                intro.Run(async (context) => await context.Response.WriteAsync("Just in intro."));
+                // go deeper
+                intro.Map("/index", (index) =>
+                    {
+                        index.Run(async (context) => await context.Response.WriteAsync("You on index in intro."));
+                    });
+            });
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello world, id != 1!");
